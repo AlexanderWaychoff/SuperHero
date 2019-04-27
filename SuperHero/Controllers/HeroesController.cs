@@ -17,9 +17,13 @@ namespace SuperHero.Controllers
 
             Hulk hulk = new Hulk();
             Batman batman = new Batman();
+            Goliath goliath = new Goliath();
+            OptimusPrime optimusPrime = new OptimusPrime();
             List<Heroes> initialHeroes = new List<Heroes>();
             initialHeroes.Add(hulk);
             initialHeroes.Add(batman);
+            initialHeroes.Add(goliath);
+            initialHeroes.Add(optimusPrime);
             CheckInitialHeroes(initialHeroes);
         }
 
@@ -27,16 +31,6 @@ namespace SuperHero.Controllers
         {
             foreach (Heroes hero in heroes)
             {
-
-                //var restaurant = context.Heroes
-                //.Include(r => r.heroName)
-                //.Where(r => r.RestaurantId == restaurantId)
-                //.FirstOrDefault();
-
-                //var restaurant = db.Restaurants
-                //.Include(r => r.Subscription)
-                //.Where(r => r.RestaurantId == restaurantId)
-                //.FirstOrDefault();
 
                 var listedHeroes = (from r in context.Heroes
                                    where r.heroName == hero.heroName
