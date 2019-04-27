@@ -14,11 +14,13 @@ namespace SuperHero.Controllers
         public HeroesController()
         {
             context = new ApplicationDbContext();
+
             Hulk hulk = new Hulk();
             Batman batman = new Batman();
             List<Heroes> initialHeroes = new List<Heroes>();
             initialHeroes.Add(hulk);
             initialHeroes.Add(batman);
+            CheckInitialHeroes(initialHeroes);
         }
 
         public void CheckInitialHeroes(List<Heroes> heroes)
@@ -26,11 +28,24 @@ namespace SuperHero.Controllers
             foreach (Heroes hero in heroes)
             {
 
-                var listedHeroes = from r in context.Heroes.AsEnumerable()
-                                   where r.Field<string>("heroName") == hero.heroName
-                                   select r.Field<string>("heroName");
+                //var restaurant = context.Heroes
+                //.Include(r => r.heroName)
+                //.Where(r => r.RestaurantId == restaurantId)
+                //.FirstOrDefault();
+
+                //var restaurant = db.Restaurants
+                //.Include(r => r.Subscription)
+                //.Where(r => r.RestaurantId == restaurantId)
+                //.FirstOrDefault();
+
+                var listedHeroes = (from r in context.Heroes
+                                   where r.heroName == hero.heroName
+                                   select r.heroName).FirstOrDefault();
                 if (listedHeroes == null)
-                { }
+                {
+                    context.Heroes.Add(hero);
+                    context.SaveChanges();
+                }
 
             }
         }
