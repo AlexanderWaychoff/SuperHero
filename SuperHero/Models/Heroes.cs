@@ -11,5 +11,9 @@ namespace SuperHero.Models
         [Key]
         public int heroId { get; set; }
         public string heroName { get; set; }
+        public string alterEgoName { get; set; }
+        public string primaryAbility { get; set; }
+        public string secondaryAbility { get; set; }
+        public string catchphrase { get; set; }
     }
 }
