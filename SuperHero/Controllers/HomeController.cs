@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperHero.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,16 +9,18 @@ namespace SuperHero.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext context = new ApplicationDbContext();
         public ActionResult Index()
         {
-            return RedirectToAction("Index","Heroes");
+            return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            //ViewBag.Message = "Your application description page.";
 
-            return View();
+
+            return RedirectToAction("Index", "Heroes");
         }
 
         public ActionResult Contact()
