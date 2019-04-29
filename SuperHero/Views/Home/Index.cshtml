@@ -3,10 +3,19 @@
 }
 
 <div class="jumbotron">
-    <h1>Souper Heroes</h1>
-    <p class="lead">Find all your favorite heroes here, along with information about them.  Don't see a hero?
-    Help us out and add one yourself!</p>
-    <p><a href="@Url.Action("About", "Home")" class="btn btn-primary btn-lg">Go here &raquo;</a></p>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Souper Heroes</h1>
+            <p class="lead">
+                Find all your favorite heroes here, along with information about them.  Don't see a hero?
+                Help us out and add one yourself!
+            </p>
+            <p><a href="@Url.Action("About", "Home")" class="btn btn-primary btn-lg">Go here &raquo;</a></p>
+        </div>
+        <div class="col-md-6">
+            <img src="~/Content/Goliath_SuperHero.png" alt="Goliath the Overweight French Fry" />
+        </div>
+    </div>
 </div>
 
 <div class="row">
