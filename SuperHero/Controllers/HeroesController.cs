@@ -75,7 +75,6 @@ namespace SuperHero.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
                     context.Heroes.Add(hero);
@@ -100,7 +99,7 @@ namespace SuperHero.Controllers
             bool isDefault = CheckIfHeroIsDefault(id);
             if (isDefault)
             {
-                return RedirectToAction("Nope");//add method name
+                return RedirectToAction("Nope");
             }
             else
             {
@@ -128,19 +127,17 @@ namespace SuperHero.Controllers
             }
         }
 
-        // GET: Heroes/Delete/5
         public ActionResult Delete(int id)
         {
             bool isDefault = CheckIfHeroIsDefault(id);
             if(isDefault)
             {
-                return RedirectToAction("Nope");//add method name
+                return RedirectToAction("Nope");
             }
             else
             {
                 Heroes deleteHero = GetHeroInformation(id);
                 context.Entry(deleteHero).State = System.Data.Entity.EntityState.Deleted;
-                //context.Heroes.Remove(deleteHero);
                 context.SaveChanges();
             }
             return RedirectToAction("List");
@@ -197,32 +194,6 @@ namespace SuperHero.Controllers
                 return false;
             }
         }
-
-        // POST: Heroes/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(Heroes hero)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-        //        bool isDefault = CheckIfHeroIsDefault(hero.heroId);
-        //        if (isDefault)
-        //        {
-                    
-        //            return RedirectToAction("Nope");//add method name
-        //        }
-        //        else
-        //        {
-        //            context.Heroes.Remove(hero);
-
-        //            return RedirectToAction("List");
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
 
         public ActionResult Nope()
         {

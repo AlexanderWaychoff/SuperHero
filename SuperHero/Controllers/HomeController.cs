@@ -17,9 +17,6 @@ namespace SuperHero.Controllers
 
         public ActionResult About()
         {
-            //ViewBag.Message = "Your application description page.";
-
-
             return RedirectToAction("List", "Heroes");
         }
 
