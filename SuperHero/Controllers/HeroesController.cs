@@ -123,9 +123,45 @@ namespace SuperHero.Controllers
             }
             else
             {
-                
+                Heroes deleteHero = GetHeroInformation(id);
+                context.Entry(deleteHero).State = System.Data.Entity.EntityState.Deleted;
+                //context.Heroes.Remove(deleteHero);
+                context.SaveChanges();
             }
-            return View();
+            return RedirectToAction("List");
+        }
+
+        public Heroes GetHeroInformation(int id)
+        {
+            Heroes hero = new Heroes();
+            hero.heroId = id;
+
+            var heroInformation = (from r in context.Heroes
+                                where r.heroId == id
+                                select r.heroName).FirstOrDefault();
+            hero.heroName = heroInformation.ToString();
+
+            heroInformation = (from r in context.Heroes
+                                where r.heroId == id
+                                select r.alterEgoName).FirstOrDefault();
+            hero.alterEgoName = heroInformation.ToString();
+
+            heroInformation = (from r in context.Heroes
+                               where r.heroId == id
+                               select r.primaryAbility).FirstOrDefault();
+            hero.primaryAbility = heroInformation.ToString();
+
+            heroInformation = (from r in context.Heroes
+                               where r.heroId == id
+                               select r.secondaryAbility).FirstOrDefault();
+            hero.secondaryAbility = heroInformation.ToString();
+
+            heroInformation = (from r in context.Heroes
+                               where r.heroId == id
+                               select r.catchphrase).FirstOrDefault();
+            hero.catchphrase = heroInformation.ToString();
+
+            return hero;
         }
 
         public bool CheckIfHeroIsDefault(int id)
@@ -148,30 +184,30 @@ namespace SuperHero.Controllers
         }
 
         // POST: Heroes/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, Heroes hero)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-                bool isDefault = CheckIfHeroIsDefault(id);
-                if (isDefault)
-                {
+        //[HttpPost]
+        //public ActionResult Delete(Heroes hero)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add delete logic here
+        //        bool isDefault = CheckIfHeroIsDefault(hero.heroId);
+        //        if (isDefault)
+        //        {
                     
-                    return RedirectToAction("Nope");//add method name
-                }
-                else
-                {
-                    context.Heroes.Remove(hero);
+        //            return RedirectToAction("Nope");//add method name
+        //        }
+        //        else
+        //        {
+        //            context.Heroes.Remove(hero);
 
-                    return RedirectToAction("List");
-                }
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //            return RedirectToAction("List");
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         public ActionResult Nope()
         {

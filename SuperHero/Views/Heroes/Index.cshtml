@@ -47,9 +47,8 @@
             @Html.DisplayFor(modelItem => item.catchphrase)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.heroId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.heroId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.heroId })
+            @Html.ActionLink("Return to List", "List") |
+            @Html.ActionLink("Delete", "Delete", new { item })
         </td>
     </tr>
 }
