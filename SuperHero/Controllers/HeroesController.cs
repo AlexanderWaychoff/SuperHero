@@ -73,10 +73,17 @@ namespace SuperHero.Controllers
             try
             {
                 // TODO: Add insert logic here
-                context.Heroes.Add(hero);
-                context.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    context.Heroes.Add(hero);
+                    context.SaveChanges();
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("List");
+                }
+                else
+                {
+                    return View(hero);
+                }
             }
             catch
             {

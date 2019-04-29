@@ -266,9 +266,11 @@
     <Content Include="Views\Heroes\Details.cshtml" />
     <Content Include="Views\Heroes\List.cshtml" />
     <Content Include="Views\Heroes\Nope.cshtml" />
+    <Content Include="Views\Heroes\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
