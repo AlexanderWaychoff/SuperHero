@@ -44,7 +44,12 @@ namespace SuperHero.Controllers
             }
         }
         // GET: Heroes
-        public ActionResult Index()
+        public ActionResult Index(int id)
+        {
+            return View(id);
+        }
+
+        public ActionResult List(int id)
         {
             return View(context.Heroes.ToList());
         }
@@ -104,23 +109,68 @@ namespace SuperHero.Controllers
         // GET: Heroes/Delete/5
         public ActionResult Delete(int id)
         {
+            bool isDefault = CheckIfHeroIsDefault(id);
+            if(isDefault)
+            {
+                ViewBag("This hero too stronk to be deleted");
+                return RedirectToAction("");//add method name
+            }
+            else
+            {
+                
+            }
             return View();
+        }
+
+        public bool CheckIfHeroIsDefault(int id)
+        {
+            Hulk hulk = new Hulk();
+            Batman batman = new Batman();
+            Goliath goliath = new Goliath();
+            OptimusPrime optimusPrime = new OptimusPrime();
+            var listedHeroes = (from r in context.Heroes
+                                where r.heroId == id
+                                select r.heroName).FirstOrDefault();
+            if (listedHeroes.ToString() == hulk.heroName || listedHeroes.ToString() == batman.heroName || listedHeroes.ToString() == goliath.heroName || listedHeroes.ToString() == optimusPrime.heroName)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // POST: Heroes/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Heroes hero)
         {
             try
             {
                 // TODO: Add delete logic here
+                bool isDefault = CheckIfHeroIsDefault(id);
+                if (isDefault)
+                {
+                    
+                    return RedirectToAction("");//add method name
+                }
+                else
+                {
+                    context.Heroes.Remove(hero);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("List");
+                }
             }
             catch
             {
                 return View();
             }
+        }
+
+        public ActionResult Nope()
+        {
+            ViewBag.Message = "This hero too stronk to be deleted";
+            return View();
         }
     }
 }

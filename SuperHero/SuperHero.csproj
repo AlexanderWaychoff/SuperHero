@@ -264,6 +264,8 @@
     <Content Include="Views\Heroes\Index.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Heroes\Details.cshtml" />
+    <Content Include="Views\Heroes\List.cshtml" />
+    <Content Include="Views\Heroes\Nope.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
