@@ -97,8 +97,16 @@ namespace SuperHero.Controllers
         // GET: Heroes/Edit/5
         public ActionResult Edit(int id)
         {
-            Heroes hero = GetHeroInformation(id);
-            return View(hero);
+            bool isDefault = CheckIfHeroIsDefault(id);
+            if (isDefault)
+            {
+                return RedirectToAction("Nope");//add method name
+            }
+            else
+            {
+                Heroes hero = GetHeroInformation(id);
+                return View(hero);
+            }
         }
 
         // POST: Heroes/Edit/5
@@ -107,13 +115,10 @@ namespace SuperHero.Controllers
         {
             try
             {
-
                 Heroes oldHero = GetHeroInformation(id);
-                //var oldHero = context.Heroes.Where(x => x.heroId == id);
                 context.Entry(oldHero).State = System.Data.Entity.EntityState.Deleted;
                 context.Heroes.Add(hero);
                 context.SaveChanges();
-                // TODO: Add update logic here
 
                 return RedirectToAction("List", context.Heroes.ToList());
             }
@@ -221,7 +226,7 @@ namespace SuperHero.Controllers
 
         public ActionResult Nope()
         {
-            ViewBag.Message = "This hero too stronk to be deleted";
+            ViewBag.Message = "This hero too stronk, try the same action on another one.";
             return View();
         }
     }
