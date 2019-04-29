@@ -97,18 +97,25 @@ namespace SuperHero.Controllers
         // GET: Heroes/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Heroes hero = GetHeroInformation(id);
+            return View(hero);
         }
 
         // POST: Heroes/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Heroes hero)
         {
             try
             {
+
+                Heroes oldHero = GetHeroInformation(id);
+                //var oldHero = context.Heroes.Where(x => x.heroId == id);
+                context.Entry(oldHero).State = System.Data.Entity.EntityState.Deleted;
+                context.Heroes.Add(hero);
+                context.SaveChanges();
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("List", context.Heroes.ToList());
             }
             catch
             {

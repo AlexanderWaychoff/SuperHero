@@ -267,6 +267,7 @@
     <Content Include="Views\Heroes\List.cshtml" />
     <Content Include="Views\Heroes\Nope.cshtml" />
     <Content Include="Views\Heroes\Create.cshtml" />
+    <Content Include="Views\Heroes\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

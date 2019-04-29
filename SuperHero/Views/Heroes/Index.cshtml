@@ -48,7 +48,7 @@
         </td>
         <td>
             @Html.ActionLink("Return to List", "List") |
-            @Html.ActionLink("Delete", "Delete", new { item })
+            @Html.ActionLink("Delete", "Delete", new { id = item.heroId })
         </td>
     </tr>
 }
