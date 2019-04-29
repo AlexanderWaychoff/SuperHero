@@ -46,7 +46,10 @@ namespace SuperHero.Controllers
         // GET: Heroes
         public ActionResult Index(int id)
         {
-            return View(id);
+            Heroes hero = GetHeroInformation(id);
+            List<Heroes> oneHero = new List<Heroes>();
+            oneHero.Add(hero);
+            return View(oneHero);
         }
 
         public ActionResult List()
