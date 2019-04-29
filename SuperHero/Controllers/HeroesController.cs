@@ -49,7 +49,7 @@ namespace SuperHero.Controllers
             return View(id);
         }
 
-        public ActionResult List(int id)
+        public ActionResult List()
         {
             return View(context.Heroes.ToList());
         }
@@ -112,8 +112,7 @@ namespace SuperHero.Controllers
             bool isDefault = CheckIfHeroIsDefault(id);
             if(isDefault)
             {
-                ViewBag("This hero too stronk to be deleted");
-                return RedirectToAction("");//add method name
+                return RedirectToAction("Nope");//add method name
             }
             else
             {
@@ -152,7 +151,7 @@ namespace SuperHero.Controllers
                 if (isDefault)
                 {
                     
-                    return RedirectToAction("");//add method name
+                    return RedirectToAction("Nope");//add method name
                 }
                 else
                 {

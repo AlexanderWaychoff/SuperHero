@@ -20,7 +20,7 @@ namespace SuperHero.Controllers
             //ViewBag.Message = "Your application description page.";
 
 
-            return RedirectToAction("Index", "Heroes");
+            return RedirectToAction("List", "Heroes");
         }
 
         public ActionResult Contact()
